@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated 3D Scroll Cards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #f0f2f5;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .scroll-wrapper {
+      perspective: 1000px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 30px;
+      padding: 20px;
+      min-width: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .card {
+      background: white;
+      width: 300px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transform: rotateY(0deg);
+      transition: transform 0.4s ease, max-height 0.5s ease, opacity 0.6s ease, transform 0.6s ease;
+      flex-shrink: 0;
+      opacity: 0;
+      transform: translateY(40px) rotateY(-10deg);
+    }
+
+    .scroll-wrapper:hover .card {
+      transform: rotateY(-15deg);
+    }
+
+    .scroll-wrapper:hover .card:hover {
+      transform: rotateY(0deg) scale(1.05);
+      z-index: 2;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0) rotateY(0deg);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 20px;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .card-extra {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      margin-top: 10px;
+    }
+
+    .card.open .card-extra {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    .card-extra p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .toggle-btn {
+      margin-top: 15px;
+      background-color: #4e73df;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background-color: #2e59d9;
+    }
+
+    .badge-icon {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: #4e73df;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .scroll-wrapper::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .scroll-wrapper::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
+
+    .scroll-wrapper::-webkit-scrollbar-track {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-wrapper">
+    <div class="card-container">
+      
+      <div class="card">
+        <img src="https://source.unsplash.com/300x180/?forest" alt="Forest">
+        <div class="card-body">
+          <div class="badge-icon"><i class="fas fa-leaf"></i></div>
+          <h3 class="card-title">Forest Escape</h3>
+          <p class="card-description">Discover peace among the trees.</p>
+          <div class="card-extra">
+            <p>Explore green trails, wildlife, and serenity in the heart of nature. Forests offer the perfect escape from city life.</p>
+          </div>
+          <button class="toggle-btn">Learn More</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://source.unsplash.com/300x180/?city" alt="City">
+        <div class="card-body">
+          <div class="badge-icon"><i class="fas fa-city"></i></div>
+          <h3 class="card-title">Urban Lights</h3>
+<p class="card-description">The city never sleeps.</p>
+          <div class="card-extra">
+            <p>Explore the vibrant culture, night life, and endless possibilities that city living has to offer.</p>
+          </div>
+          <button class="toggle-btn">Learn More</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://source.unsplash.com/300x180/?beach" alt="Beach">
+        <div class="card-body">
+          <div class="badge-icon"><i class="fas fa-umbrella-beach"></i></div>
+          <h3 class="card-title">Beach Vibes</h3>
+          <p class="card-description">Feel the breeze and sun.</p>
+          <div class="card-extra">
+            <p>Relax under the palm trees, enjoy sunsets, and let the ocean waves wash your worries away.</p>
+          </div>
+          <button class="toggle-btn">Learn More</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://source.unsplash.com/300x180/?mountains" alt="Mountains">
+        <div class="card-body">
+          <div class="badge-icon"><i class="fas fa-mountain"></i></div>
+          <h3 class="card-title">Mountain Adventures</h3>
+          <p class="card-description">Reach new heights.</p>
+          <div class="card-extra">
+            <p>Challenge yourself with hikes and breathtaking views that leave you speechless and inspired.</p>
+          </div>
+          <button class="toggle-btn">Learn More</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Learn More toggle
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        card.classList.toggle('open');
+        btn.textContent = card.classList.contains('open') ? 'Show Less' : 'Learn More';
+      });
+    });
+
+    // Scroll animation when cards enter view
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+
+</body>
+</html>
